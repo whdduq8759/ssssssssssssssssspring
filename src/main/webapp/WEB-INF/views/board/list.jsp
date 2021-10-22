@@ -69,7 +69,9 @@
                         </td>
                         <td>${article.viewCnt}</td>
                         <td>
-                            <a data-board-no="${article.boardNo}" class="del-btn" href="#">[삭제]</a>
+                            <c:if test="${loginUser.auth == 'ADMIN' || ${loginUser.account == article.write}}">
+                                <a data-board-no="${article.boardNo}" class="del-btn" href="#">[삭제]</a>
+                            </c:if>
                         </td>
                     </tr>
                 </c:forEach>

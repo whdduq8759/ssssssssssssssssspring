@@ -20,6 +20,7 @@ import java.util.List;
 @Log4j2
 @RequiredArgsConstructor
 @RequestMapping("/board")
+
 public class BoardController {
 
     private final BoardService boardService;

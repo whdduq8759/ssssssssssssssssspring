@@ -58,7 +58,9 @@
                     href="/board/list?pageNum=${page.pageNum}&amount=${page.amount}&type=${page.type}&keyword=${page.keyword}">글
                     목록보기</a>&nbsp;
 
-                <a href="/board/modify?boardNo=${article.boardNo}">글 수정하기</a>
+                <c:if test="${loginUser.auth == 'ADMIN' || ${loginUser.account == article.write}}">
+                    <a href="/board/modify?boardNo=${article.boardNo}">글 수정하기</a>
+                </c:if>
 
 
             </div>
@@ -224,7 +226,8 @@
                     const active = (pageInfo.page.pageNum === i) ? 'p-active' : '';
                     tag += "<li class='page-item " + active + "'><a class='page-link page-custom " + active +
                         "' href='" + i + "'>" +
-                        i + "</a></li>";s
+                        i + "</a></li>";
+                    s
                 }
 
                 //다음 버튼 만들기
@@ -249,7 +252,7 @@
                         "         <b>" + reply.replyWriter + "</b>" +
                         "       </span>" +
                         "       <span class='offset-md-6 col-md-3 text-right'><b>" + formatDate(reply
-                        .replyDate) +
+                            .replyDate) +
                         "</b></span>" +
                         "    </div><br>" +
                         "    <div class='row'>" +
@@ -285,7 +288,7 @@
             }
 
             // 페이지 버튼 클릭 이벤트
-            $('.pagination').on('click', 'li a', e=> {
+            $('.pagination').on('click', 'li a', e => {
                 e.preventDefault(); // 태그 고유기능 중지
                 getReplyList(e.target.getAttribute('href'));
             });
@@ -396,8 +399,6 @@
                     }
                 })
         });
-
-    
     </script>
 
 </body>
